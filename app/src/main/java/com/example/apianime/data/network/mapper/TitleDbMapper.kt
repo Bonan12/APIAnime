@@ -9,8 +9,8 @@ interface ITitleDbMapper {
 
 class TitleDbMapper : ITitleDbMapper {
     override fun invoke(titleApi: TitleApi): TitleDb {
-        with(titleApi.data){
-            return TitleDb(
+        return with(titleApi.data){
+            TitleDb(
                 id = this?.mal_id ?: 0,
                 name = this?.title ?: "Не указано название",
                 type = this?.type ?: "Не указан тип",

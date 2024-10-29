@@ -1,6 +1,5 @@
 package com.example.apianime.presentation.viewModel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.apianime.domain.usecase.ITitleUseCase
@@ -12,13 +11,23 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class ListPageViewModel(
-    usecase: ITitleUseCase,
-    mapper: ITitleItemMapper
+    private val usecase: ITitleUseCase,
+    private val mapper: ITitleItemMapper,
 ) : ViewModel() {
     private val _titles: MutableStateFlow<List<TitleItem>> = MutableStateFlow(emptyList())
     val titles: StateFlow<List<TitleItem>> = _titles
 
     init {
+        refresh()
+    }
+
+    fun refresh(){
+        viewModelScope.launch {
+            load()
+        }
+    }
+
+    private fun load() {
         viewModelScope.launch {
             _titles.value = usecase
                 .getTitles()

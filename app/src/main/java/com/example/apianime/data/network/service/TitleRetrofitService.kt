@@ -1,7 +1,6 @@
 package com.example.apianime.data.network.service
 
 
-import com.example.apianime.data.network.model.Data
 import com.example.apianime.data.network.model.TitleApi
 import retrofit2.http.GET
 import retrofit2.http.Path

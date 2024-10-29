@@ -7,9 +7,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Webp(
     @SerialName("image_url")
-    val imageUrl: String? = null,
+    val image_url: String? = null,
     @SerialName("large_image_url")
-    val largeImageUrl: String? = null,
+    val large_image_url: String? = null,
     @SerialName("small_image_url")
-    val smallImageUrl: String? = null
+    val small_image_url: String? = null
 )

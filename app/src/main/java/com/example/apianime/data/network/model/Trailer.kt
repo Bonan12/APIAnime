@@ -7,9 +7,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Trailer(
     @SerialName("embed_url")
-    val embedUrl: String? = null,
+    val embed_url: String? = null,
     @SerialName("url")
     val url: String? = null,
     @SerialName("youtube_id")
-    val youtubeId: String? = null
+    val youtube_id: String? = null
 )

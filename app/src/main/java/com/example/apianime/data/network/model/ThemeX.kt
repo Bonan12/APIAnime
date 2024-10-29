@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ThemeX(
     @SerialName("mal_id")
-    val malId: Int? = null,
+    val mal_id: Int? = null,
     @SerialName("name")
     val name: String? = null,
     @SerialName("type")

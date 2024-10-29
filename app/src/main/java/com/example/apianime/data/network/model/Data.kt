@@ -13,21 +13,21 @@ data class Data(
     @SerialName("approved")
     val approved: Boolean? = false,
     @SerialName("background")
-    val background: String? = null,
+    val background: String? = "",
     @SerialName("broadcast")
     val broadcast: Broadcast? = Broadcast(),
     @SerialName("demographics")
     val demographics: List<Demographic>? = listOf(),
     @SerialName("duration")
-    val duration: String? = null,
+    val duration: String? = "",
     @SerialName("episodes")
-    val episodes: Int? = null,
+    val episodes: Int? = 0,
     @SerialName("explicit_genres")
-    val explicitGenres: List<ExplicitGenre>? = listOf(),
+    val explicit_genres: List<ExplicitGenre>? = listOf(),
     @SerialName("external")
     val `external`: List<External>? = listOf(),
     @SerialName("favorites")
-    val favorites: Int? = null,
+    val favorites: Int? = 0,
     @SerialName("genres")
     val genres: List<Genre>? = listOf(),
     @SerialName("images")
@@ -35,55 +35,55 @@ data class Data(
     @SerialName("licensors")
     val licensors: List<Licensor>? = listOf(),
     @SerialName("mal_id")
-    val malId: Int? = null,
+    val mal_id: Int? = 0,
     @SerialName("members")
-    val members: Int? = null,
+    val members: Int? = 0,
     @SerialName("popularity")
-    val popularity: Int? = null,
+    val popularity: Int? = 0,
     @SerialName("producers")
     val producers: List<Producer>? = listOf(),
     @SerialName("rank")
-    val rank: Int? = null,
+    val rank: Int? = 0,
     @SerialName("rating")
-    val rating: String? = null,
+    val rating: String? = "",
     @SerialName("relations")
     val relations: List<Relation>? = listOf(),
     @SerialName("score")
-    val score: Double? = null,
+    val score: Double? = 0.0,
     @SerialName("scored_by")
-    val scoredBy: Int? = null,
+    val scored_by: Int? = 0,
     @SerialName("season")
-    val season: String? = null,
+    val season: String? = "",
     @SerialName("source")
-    val source: String? = null,
+    val source: String? = "",
     @SerialName("status")
-    val status: String? = null,
+    val status: String? = "",
     @SerialName("streaming")
     val streaming: List<Streaming>? = listOf(),
     @SerialName("studios")
     val studios: List<Studio>? = listOf(),
     @SerialName("synopsis")
-    val synopsis: String? = null,
+    val synopsis: String? = "",
     @SerialName("theme")
     val theme: Theme? = Theme(),
     @SerialName("themes")
     val themes: List<ThemeX>? = listOf(),
     @SerialName("title")
-    val title: String? = null,
+    val title: String? = "",
     @SerialName("title_english")
-    val titleEnglish: String? = null,
+    val title_english: String? = "",
     @SerialName("title_japanese")
-    val titleJapanese: String? = null,
+    val title_japanese: String? = "",
     @SerialName("title_synonyms")
-    val titleSynonyms: List<String>? = listOf(),
+    val title_synonyms: List<String>? = listOf(),
     @SerialName("titles")
     val titles: List<Title>? = listOf(),
     @SerialName("trailer")
     val trailer: Trailer? = Trailer(),
     @SerialName("type")
-    val type: String? = null,
+    val type: String? = "",
     @SerialName("url")
-    val url: String? = null,
+    val url: String? = "",
     @SerialName("year")
-    val year: Int? = null
+    val year: Int? = 0
 )

@@ -11,12 +11,12 @@ class TitleDbMapper : ITitleDbMapper {
     override fun invoke(titleApi: TitleApi): TitleDb {
         with(titleApi.data){
             return TitleDb(
-                id = this?.malId ?: 0,
+                id = this?.mal_id ?: 0,
                 name = this?.title ?: "Не указано название",
                 type = this?.type ?: "Не указан тип",
                 genres = this?.genres?.map { it.name ?: "Не указан жанр" },
                 rating = this?.rating ?: "Не указан возрастной рейтинг",
-                poster = this?.images?.jpg?.imageUrl ?: "Не указано изображение"
+                poster = this?.images?.jpg?.image_url ?: "Не указано изображение"
             )
         }
     }

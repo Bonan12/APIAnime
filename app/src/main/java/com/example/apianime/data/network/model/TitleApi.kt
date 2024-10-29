@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class TitleApi(
     @SerialName("data")
-    val `data`: Data? = Data()
+    val data: Data? = Data()
 )

@@ -34,19 +34,9 @@ class TitleRepository(
         return result
     }
 
-//    private suspend fun getTitlesByQuery(){
-//        val titleApi = service.getTitlesByQuery(limit = 1)
-//        with(titleApi.titles
-//            .map {
-//                titleDbMapper
-//                    .invoke(it!!)
-//            }
-//        ) {
-//            forEach {
-//                titleDao.insertTitle(it)
-//            }
-//        }
-//    }
+    private fun insert(){
+
+    }
 
     private suspend fun getTitleById(id: Int): Boolean {
         return withContext(Dispatchers.IO) {

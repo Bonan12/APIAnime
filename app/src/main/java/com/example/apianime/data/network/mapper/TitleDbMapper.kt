@@ -12,11 +12,11 @@ class TitleDbMapper : ITitleDbMapper {
         return with(titleApi.data){
             TitleDb(
                 id = this?.mal_id ?: 0,
-                name = this?.title ?: "Не указано название",
-                type = this?.type ?: "Не указан тип",
-                genres = this?.genres?.map { it.name ?: "Не указан жанр" },
-                rating = this?.rating ?: "Не указан возрастной рейтинг",
-                poster = this?.images?.jpg?.image_url ?: "Не указано изображение"
+                name = this?.title,
+                type = this?.type,
+                genres = this?.genres?.map { it.name ?: ""},
+                rating = this?.rating,
+                poster = this?.images?.jpg?.image_url
             )
         }
     }

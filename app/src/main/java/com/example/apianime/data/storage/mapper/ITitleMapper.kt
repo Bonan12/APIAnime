@@ -4,17 +4,30 @@ import com.example.apianime.data.storage.model.TitleDb
 import com.example.apianime.domain.model.Title
 
 interface ITitleMapper{
-    operator fun invoke(title: TitleDb) : Title
+    fun toDomain(titleDb: TitleDb) : Title
+
+    fun toDb(title: Title) : TitleDb
 }
 
 class TitleMapper() : ITitleMapper {
-    override fun invoke(title: TitleDb): Title {
+    override fun toDomain(titleDb: TitleDb): Title {
         return Title(
-            name = title.name ?: "Нет названия",
-            type = title.type ?: "Нет типа",
-            genres = title.genres ?: emptyList(),
-            rating = title.rating ?: "Не указан рейтинг",
-            poster = title.poster ?: "Нет постера"
+            name = titleDb.name ?: "",
+            type = titleDb.type ?: "",
+            genres = titleDb.genres ?: emptyList(),
+            rating = titleDb.rating ?: "",
+            poster = titleDb.poster ?: ""
+        )
+    }
+
+    override fun toDb(title: Title): TitleDb {
+        return TitleDb(
+            id = 0,
+            name = title.name,
+            type = title.type,
+            genres = title.genres,
+            rating = title.rating,
+            poster = title.poster
         )
     }
 }

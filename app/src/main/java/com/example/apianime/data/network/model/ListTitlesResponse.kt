@@ -5,7 +5,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TitleApi(
+data class ListTitlesResponse(
     @SerialName("data")
-    val data: Data? = Data()
+    val `data`: List<Data?>? = null,
+    @SerialName("pagination")
+    val pagination: Pagination? = null
 )

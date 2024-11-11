@@ -8,7 +8,6 @@ import com.example.apianime.domain.model.Title
 import com.example.apianime.domain.repo.ITitleRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.HttpException
 
 class TitleRepository(
     private val titleDao: ITitleDao,

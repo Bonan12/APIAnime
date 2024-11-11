@@ -23,7 +23,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -42,6 +44,7 @@ fun ListPage(
     viewModel: ListPageViewModel = koinViewModel()
 ) {
     val items by viewModel.titles.collectAsState()
+    val sorted by viewModel.isIncreased.collectAsState()
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -53,8 +56,15 @@ fun ListPage(
                     )
                 },
                     actions = {
-                        IconButton(onClick = {funcs.goToFavourites()}) {
+                        IconButton(onClick = { funcs.goToFavourites() }) {
                             Icon(imageVector = Icons.Outlined.Favorite, contentDescription = null)
+                        }
+                        TextButton(modifier = Modifier.padding(),
+                            onClick = {
+                                viewModel.changeSorting()
+                            }
+                        ) {
+                            Text(text = if (sorted)"По убыванию" else "По возрастанию")
                         }
                     })
             }

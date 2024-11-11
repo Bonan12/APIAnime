@@ -18,6 +18,7 @@ import com.example.apianime.presentation.mapper.ITitleItemMapper
 import com.example.apianime.presentation.mapper.TitleItemMapper
 import com.example.apianime.presentation.viewModel.FavouritesPageViewModel
 import com.example.apianime.presentation.viewModel.ListPageViewModel
+import com.example.apianime.presentation.viewModel.NavigationGraphBarViewModel
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
@@ -35,4 +36,5 @@ val rootModule = module {
 
     single<ListPageViewModel> { ListPageViewModel(get(), get(), get(), get()) }
     single<FavouritesPageViewModel> { FavouritesPageViewModel(get(), get()) }
+    single<NavigationGraphBarViewModel> {NavigationGraphBarViewModel(get())}
 }

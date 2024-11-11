@@ -7,10 +7,8 @@ import com.example.apianime.data.storage.mapper.ITitleMapper
 import com.example.apianime.domain.model.Title
 import com.example.apianime.domain.repo.ITitleRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 
 class TitleRepository(
     private val titleDao: ITitleDao,
@@ -18,44 +16,30 @@ class TitleRepository(
     private val titleDbMapper: ITitleDbMapper,
     private val service: TitleRetrofitService
 ) : ITitleRepository {
-    override suspend fun getTitles(): Flow<List<Title>> {
-        var result = flow { emit(emptyList<Title>()) }
-        withContext(Dispatchers.IO) {
-            if (getTitleById(111)) {
-                result = flow {
-                    emit(
-                        titleDao.getTitles().first().map { title ->
-                            titleMapper.invoke(title = title)
-                        }
-                    )
-                }
-            }
-        }
-        return result
+    override suspend fun getTitles(): Set<Title> {
+        val result = getTitlesFromDatabase() + getTitlesFromResponse()
+        return result.distinctBy { it.name }.toSet()
     }
 
-    private fun insert(){
-
-    }
-
-    private suspend fun getTitleById(id: Int): Boolean {
+    override suspend fun getTitlesFromResponse(): Set<Title> {
         return withContext(Dispatchers.IO) {
             try {
-                val titleApi = service.getTitleById(id)
-                val titleDb = titleDbMapper.invoke(titleApi)
-                titleDao.insertTitle(titleDb)
-                true
+                val titlesResponse = service.getTitlesByQuery()
+                val titlesDb = titlesResponse.data?.filter { !it?.images?.jpg?.image_url.isNullOrEmpty() }
+                    ?.map { titleDbMapper.invoke(it) }
+                val titles = titlesDb?.map { titleMapper.toDomain(it) }
+                titles?.distinctBy { it.name }?.toSet() ?: emptySet()
             } catch (e: Exception) {
-                false
+                emptySet()
             }
         }
     }
 
-    private suspend fun getRandom() {
-        withContext(Dispatchers.IO) {
-            val titleApi = service.getRandomAnime()
-            val titleDb = titleDbMapper.invoke(titleApi)
-            titleDao.insertTitle(titleDb)
-        }
+    override suspend fun save(title: Title) {
+        titleDao.insertTitle(titleMapper.toDb(title))
+    }
+
+    override suspend fun getTitlesFromDatabase(): Set<Title> {
+        return titleDao.getTitles().map { titleMapper.toDomain(it) }.distinctBy { it.name }.toSet()
     }
 }

@@ -1,9 +1,14 @@
 package com.example.apianime.domain.repo
 
 import com.example.apianime.domain.model.Title
-import kotlinx.coroutines.flow.Flow
 
 
 interface ITitleRepository {
-    suspend fun getTitles(): Flow<List<Title>>
+    suspend fun getTitles() : Set<Title>
+
+    suspend fun getTitlesFromResponse(): Set<Title>
+
+    suspend fun save(title: Title)
+
+    suspend fun getTitlesFromDatabase() : Set<Title>
 }

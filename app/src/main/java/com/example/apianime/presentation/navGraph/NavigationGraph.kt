@@ -8,10 +8,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.example.apianime.presentation.functionPages.DetailFunctions
+import com.example.apianime.presentation.functionPages.FavouritesFunctions
 import com.example.apianime.presentation.functionPages.TitlesFunctions
 import com.example.apianime.presentation.model.BarItem
 import com.example.apianime.presentation.model.PageItem
 import com.example.apianime.presentation.model.TitleItem
+import com.example.apianime.presentation.page.FavouritesPage
 import com.example.apianime.presentation.page.ListPage
 import com.example.apianime.presentation.page.SettingPage
 import com.example.apianime.presentation.page.TitleDetailPage
@@ -28,6 +30,11 @@ fun NavigationGraph(navController: NavHostController) {
         }
         composable(BarItem.SettingPageModel.route) {
             SettingPage()
+        }
+        composable<PageItem.FavouritesTitles>{
+            FavouritesPage(
+                funcs = FavouritesFunctions(navController = navController)
+            )
         }
         composable<PageItem.TitleDetail>(
             typeMap = mapOf(typeOf<TitleItem>() to MyNavType)

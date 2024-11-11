@@ -8,14 +8,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -48,42 +51,58 @@ fun ListPage(
                     Text(
                         text = "Аниме"
                     )
-                })
+                },
+                    actions = {
+                        IconButton(onClick = {funcs.goToFavourites()}) {
+                            Icon(imageVector = Icons.Outlined.Favorite, contentDescription = null)
+                        }
+                    })
             }
         ) { innerPadding ->
             if (items.isNotEmpty()) {
-                LazyColumn(
+                LazyVerticalGrid(
+                    columns = GridCells.Adaptive(192.dp),
                     modifier = Modifier
-                        .padding(innerPadding)
-                ) {
+                        .padding(innerPadding),
+                    content = {
+                        items(items.size) { index ->
+                            Card(
+                                modifier = Modifier
+                                    .padding(16.dp)
+                                    .fillMaxWidth(),
+                                onClick = { funcs.goToDetail(title = items[index]) }
+                            ) {
+                                Row {
+                                    Column(
+                                        modifier = Modifier
+                                            .padding(16.dp)
+                                            .height(200.dp)
+                                            .fillMaxWidth()
+                                    ) {
+                                        Text(
+                                            text = items[index].name,
+                                            color = MaterialTheme.colorScheme.primary
+                                        )
+                                        Spacer(modifier = Modifier.height(8.dp))
+                                        Text(
+                                            text = items[index].genres.joinToString(separator = " ") { it },
+                                            color = MaterialTheme.colorScheme.onSurface
+                                        )
+                                        IconButton(onClick = {
+                                            viewModel.saveDatabase(items[index])
+                                        }) {
+                                            Icon(
+                                                imageVector = Icons.Default.FavoriteBorder,
+                                                contentDescription = null
+                                            )
+                                        }
+                                    }
 
-                    items(items) { item ->
-                        Card(
-                            modifier = Modifier
-                                .padding(16.dp)
-                                .fillMaxWidth(),
-                            onClick = { funcs.goTo(title = item) }
-                        ) {
-                            Row {
-                                Column(
-                                    modifier = Modifier
-                                        .padding(16.dp)
-                                        .fillMaxWidth()
-                                ) {
-                                    Text(
-                                        text = item.name,
-                                        color = MaterialTheme.colorScheme.primary
-                                    )
-                                    Spacer(modifier = Modifier.height(8.dp))
-                                    Text(
-                                        text = item.genres.joinToString(separator = " ") { it },
-                                        color = MaterialTheme.colorScheme.onSurface
-                                    )
                                 }
                             }
                         }
                     }
-                }
+                )
             } else {
                 Column(modifier = Modifier.padding(innerPadding)) {
                     Text("Попробуй ещё раз")

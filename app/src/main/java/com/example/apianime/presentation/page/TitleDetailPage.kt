@@ -40,11 +40,6 @@ import com.example.apianime.presentation.functionPages.DetailFunctions
 import com.example.apianime.presentation.model.TitleItem
 import com.example.apianime.presentation.theme.Typography
 
-/**
- * @author Lapoushko
- * детали фильма
- */
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TitleDetailPage(

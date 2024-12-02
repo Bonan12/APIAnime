@@ -2,16 +2,15 @@ package com.example.apianime.domain.usecase
 
 import com.example.apianime.domain.model.Title
 import com.example.apianime.domain.repo.ITitleRepository
-import kotlinx.coroutines.flow.Flow
 
 interface ITitleUseCase{
-    suspend fun getTitles() : Flow<List<Title>>
+    suspend fun getTitlesFromResponse() : Set<Title>
 }
 
 class TitleUseCase(
     val repo: ITitleRepository
 ): ITitleUseCase{
-    override suspend fun getTitles(): Flow<List<Title>> {
-        return repo.getTitles()
+    override suspend fun getTitlesFromResponse(): Set<Title> {
+        return repo.getTitlesFromResponse()
     }
 }

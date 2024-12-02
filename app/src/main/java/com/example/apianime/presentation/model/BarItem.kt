@@ -2,8 +2,10 @@ package com.example.apianime.presentation.model
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.List
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
 
@@ -20,10 +22,10 @@ sealed class BarItem(
         title = "Список"
     )
 
-    data object SettingPageModel : BarItem(
-        route = "Настройки",
-        selectedIcon = Icons.Filled.Settings,
-        unselectedIcon = Icons.Outlined.Settings,
-        title = "Настройки"
+    data object PersonPageModel : BarItem(
+        route = "Профиль",
+        selectedIcon = Icons.Filled.Person,
+        unselectedIcon = Icons.Outlined.Person,
+        title = "Профиль"
     )
 }

@@ -1,26 +1,15 @@
 package com.example.apianime.data.storage.dao
 
-import com.example.apianime.data.storage.mock.MockData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
 import com.example.apianime.data.storage.model.TitleDb
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 
+@Dao
 interface ITitleDao {
-    suspend fun getTitles(): Flow<List<TitleDb>>
+    @Query("SELECT * FROM titles")
+    suspend fun getTitles(): List<TitleDb>
 
-    suspend fun insertTitle(titleDb: TitleDb): Boolean
-}
-
-class TitleDao : ITitleDao {
-    private val mockData: MockData = MockData()
-
-    override suspend fun getTitles(): Flow<List<TitleDb>> {
-        return flow { emit(mockData.titles) }
-    }
-
-    override suspend fun insertTitle(titleDb: TitleDb): Boolean {
-        val size = mockData.titles.size
-        mockData.titles.add(titleDb)
-        return size < mockData.titles.size
-    }
+    @Insert
+    suspend fun insertTitle(titleDb: TitleDb)
 }

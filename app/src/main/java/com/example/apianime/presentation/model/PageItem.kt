@@ -7,4 +7,10 @@ sealed class PageItem {
     data class TitleDetail(
         val title: TitleItem
     ) : PageItem()
+
+    @Serializable
+    data object FavouritesTitles : PageItem()
+
+    @Serializable
+    data object EditPerson: PageItem()
 }

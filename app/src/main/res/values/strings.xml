@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">APIAnime</string>
+    <string name="broadcast_name">name</string>
+    <string name="broadcast_id">id</string>
 </resources>

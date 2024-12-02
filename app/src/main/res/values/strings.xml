@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">APIAnime</string>
+    <string name="sample_pdf">https://pdfobject.com/pdf/sample.pdf</string>
 </resources>

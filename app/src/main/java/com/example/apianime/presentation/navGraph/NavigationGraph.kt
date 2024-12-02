@@ -13,9 +13,10 @@ import com.example.apianime.presentation.functionPages.TitlesFunctions
 import com.example.apianime.presentation.model.BarItem
 import com.example.apianime.presentation.model.PageItem
 import com.example.apianime.presentation.model.TitleItem
+import com.example.apianime.presentation.page.EditPersonPage
 import com.example.apianime.presentation.page.FavouritesPage
 import com.example.apianime.presentation.page.ListPage
-import com.example.apianime.presentation.page.SettingPage
+import com.example.apianime.presentation.page.PersonPage
 import com.example.apianime.presentation.page.TitleDetailPage
 import kotlin.reflect.typeOf
 
@@ -28,8 +29,8 @@ fun NavigationGraph(navController: NavHostController) {
         composable(BarItem.ListPageModel.route) {
             ListPage(funcs = TitlesFunctions(navController = navController))
         }
-        composable(BarItem.SettingPageModel.route) {
-            SettingPage()
+        composable(BarItem.PersonPageModel.route) {
+            PersonPage(onToEdit = {navController.navigate(PageItem.EditPerson)})
         }
         composable<PageItem.FavouritesTitles>{
             FavouritesPage(
@@ -49,6 +50,11 @@ fun NavigationGraph(navController: NavHostController) {
                     poster = Uri.parse(title.title.poster.toString().replace("***", "/"))
                 ),
                 funcs = DetailFunctions(navController)
+            )
+        }
+        composable<PageItem.EditPerson>{
+            EditPersonPage(
+                onToBack = {navController.popBackStack()}
             )
         }
     }

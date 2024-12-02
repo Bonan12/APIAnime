@@ -10,4 +10,7 @@ sealed class PageItem {
 
     @Serializable
     data object FavouritesTitles : PageItem()
+
+    @Serializable
+    data object EditPerson: PageItem()
 }
